@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Container } from "./sidebar.elements";
 
-import logo from "../../assets/images/logo-large.svg";
+import logoLg from "../../assets/images/logo-large.svg";
+import logoSm from "../../assets/images/logo-small.svg";
 
 import navOverview from "../../assets/images/icon-nav-overview.svg";
 import navTransactions from "../../assets/images/icon-nav-transactions.svg";
@@ -12,11 +13,18 @@ import navBills from "../../assets/images/icon-nav-recurring-bills.svg";
 
 import minimizeMenu from "../../assets/images/icon-minimize-menu.svg";
 
-export default function sidebar() {
+export default function Sidebar() {
+  const [minimized, setMinimized] = useState(false);
+
+  const toggleMenu = () => {
+    setMinimized((prevState) => !prevState);
+  };
+
   return (
-    <Container>
+    <Container className={minimized && "minimized"}>
       <div className="logo">
-        <img src={logo} alt="finance" />
+        <img src={logoLg} alt="finance" className="logo--lg" />
+        <img src={logoSm} alt="finance" className="logo--sm" />
       </div>
       <div className="navigation">
         <div className="navigation-item">
@@ -41,9 +49,11 @@ export default function sidebar() {
         </div>
       </div>
       <div className="minimize">
-        <div className="minimize-btn">
-          <img src={minimizeMenu} alt="minimize menu" />
-          <span>Minimize menu</span>
+        <div className="minimize-btn" onClick={toggleMenu}>
+          <div>
+            <img src={minimizeMenu} alt="minimize menu" />
+            <span>Minimize menu</span>
+          </div>
         </div>
       </div>
     </Container>
