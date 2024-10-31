@@ -18,7 +18,7 @@ export const Container = styled.div`
   transition: ${transitionTime}s;
 
   * {
-    transition: ${transitionTime}s all;
+    transition: ${transitionTime}s;
   }
 
   img {
@@ -119,6 +119,67 @@ export const Container = styled.div`
 
       span {
         opacity: 0;
+      }
+    }
+  }
+
+  @media (max-width: 960px) {
+    height: 4.625rem;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0;
+
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    .logo,
+    .minimize {
+      display: none;
+    }
+
+    .navigation {
+      display: flex;
+      width: 100%;
+
+      .navigation-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 0;
+        flex-grow: 1;
+
+        img {
+          margin: 0 auto 0.75rem auto;
+        }
+
+        span {
+          opacity: 1;
+          font-size: 0.75rem;
+          transition: 0;
+          transform: translateX(0);
+        }
+      }
+    }
+
+    &.minimized {
+      width: 100vw;
+    }
+  }
+
+  @media (max-width: 500px) {
+    height: 3.25rem;
+
+    .navigation .navigation-item {
+      img {
+        margin: 0;
+      }
+      span {
+        display: none;
       }
     }
   }
